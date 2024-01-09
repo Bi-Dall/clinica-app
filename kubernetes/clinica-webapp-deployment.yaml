@@ -2,35 +2,35 @@
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "clinica-webapp-deployment"
+  name: "clinica-app"
   namespace: "default"
   labels:
-    app: "clinica-webapp-deployment"
+    app: "clinica-app"
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: "clinica-webapp-deployment"
+      app: "clinica-app"
   template:
     metadata:
       labels:
-        app: "clinica-webapp-deployment"
+        app: "clinica-app"
     spec:
       containers:
-      - name: "clinicaapp-1"
+      - name: "clinica-app"
         image: "gcr.io/clinica-410702/github.com/bi-dall/clinica-app"
 ---
 apiVersion: "autoscaling/v2"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "clinica-webapp-deployment-hpa-jwbg"
+  name: "clinica-app-hpa-jwbg"
   namespace: "default"
   labels:
-    app: "clinica-webapp-deployment"
+    app: "clinica-app"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "clinica-webapp-deployment"
+    name: "clinica-app"
     apiVersion: "apps/v1"
   minReplicas: 1
   maxReplicas: 5
