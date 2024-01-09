@@ -58,7 +58,7 @@ export class ClienteService {
 
   public tipo: string = 'tudo';
   public valor: string = 'tudo';
-  public param: string = 'tudo֍tudo֍0֍P';
+  public param: string = 'tudo%tudo%0%P';
   public firstID: number = 0;
   public lastID: number = 0;
   public AfirstID: number = 0;
@@ -237,13 +237,13 @@ export class ClienteService {
 
 
   proximo(){
-    this.param = this.tipo + '֍' + this.valor + '֍' + this.lastID.toString() + '֍P'
+    this.param = this.tipo + '%' + this.valor + '%' + this.lastID.toString() + '%P'
     console.log(this.param)
     this.iniciar()
   }
 
   anterior(){
-    this.param = this.tipo + '֍' + this.valor + '֍' + this.firstID.toString() + '֍A'
+    this.param = this.tipo + '%' + this.valor + '%' + this.firstID.toString() + '%A'
     console.log(this.param)
     this.iniciar()
   }
@@ -259,7 +259,7 @@ export class ClienteService {
         this.clientesG = response.dados;
         this.clientesG.sort((a, b) => a.nome.localeCompare(b.nome));
         this.clientes = this.clientesG;
-        const mensagem = response.mensagem.split('֍');
+        const mensagem = response.mensagem.split('%');
         this.lastID = parseInt(mensagem[1]);
         this.firstID = parseInt(mensagem[0]);
         this.AlastID = parseInt(mensagem[1]);
